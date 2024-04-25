@@ -1,13 +1,13 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/n3zer/booklib/database"
+)
 
 func main() {
+	database.ConnectDb()
 	app := gin.Default()
-	app.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	SetupRoutes(app)
 	app.Run(":3000")
 }
